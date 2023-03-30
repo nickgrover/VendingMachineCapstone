@@ -5,18 +5,65 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Inventory {
+public class InventoryItem {
 
     private static final int INITIAL_QUANTITY = 5;
 
     private Scanner in;
     private PrintWriter out;
     private int quantity;
-    private Map<String, String> itemNameID = new HashMap<>();
+   // private Map<String, String> itemNameID = new HashMap<>();
+    private String name;
+    private String iD;
+    private String category;
+    private int price;
 
-
-    public Inventory(){
+    public InventoryItem(String name, String iD, String category, int price) {
         this.quantity = INITIAL_QUANTITY;
+        this.name = name;
+        this.iD = iD;
+        this.category = category;
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getiD() {
+        return iD;
+    }
+
+    public void setiD(String iD) {
+        this.iD = iD;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     // call the setStock method
