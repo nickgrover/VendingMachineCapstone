@@ -2,7 +2,13 @@ package com.techelevator;
 
 public interface Purchasable {
 
-    void setStock(String item, int quantity);
+
+    String printPurchaseMessage();
+    String getSlotLocation();
+    String getName();
+    double getPrice();
+    int getQuantity();
+    String getType();
 
 
 }

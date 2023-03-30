@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class InventoryItem {
+public class InventoryItem implements Purchasable {
 
     private static final int INITIAL_QUANTITY = 5;
 
@@ -16,24 +16,41 @@ public class InventoryItem {
     private int quantity;
     private static Map<String, String> itemNameID = new HashMap<>();
     private String name;
-    private String iD;
-    private String category;
-    private int price;
+    private String slotLocation;
+    private String type;
+    private double price;
 
-    public InventoryItem(String name, String iD, String category, int price) {
+    public InventoryItem(String slotLocation, String name, double price, String type) {
         this.quantity = INITIAL_QUANTITY;
         this.name = name;
-        this.iD = iD;
-        this.category = category;
+        this.slotLocation = slotLocation;
+        this.type = type;
         this.price = price;
     }
+
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public int updateQuantity(int quantity) { // take in current quantity, subtract 1, return new quantity
+        return quantity--;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+
+    @Override
+    public String printPurchaseMessage() {
+        return null;
+    }
+
+    @Override
+    public String getSlotLocation() {
+        return null;
     }
 
     public String getName() {
@@ -44,27 +61,11 @@ public class InventoryItem {
         this.name = name;
     }
 
-    public String getiD() {
-        return iD;
-    }
-
-    public void setiD(String iD) {
-        this.iD = iD;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -82,6 +83,7 @@ public class InventoryItem {
             System.out.println(item.getValue() + " - Quantity: " + INITIAL_QUANTITY);
         }
     }
+
 
 
     // call the setStock method
