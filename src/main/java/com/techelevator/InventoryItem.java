@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +14,7 @@ public class InventoryItem {
     private Scanner in;
     private PrintWriter out;
     private int quantity;
-   // private Map<String, String> itemNameID = new HashMap<>();
+    private static Map<String, String> itemNameID = new HashMap<>();
     private String name;
     private String iD;
     private String category;
@@ -65,6 +67,22 @@ public class InventoryItem {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public static void displayItems() {
+        File file = new File("vendingmachine.csv");
+        try (Scanner scanner = new Scanner (file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String [] arrayLine = line.split("\\|");
+                itemNameID.put(arrayLine[0], arrayLine[1]);
+            }
+        } catch (FileNotFoundException e) {
+        }
+        for (Map.Entry<String, String> item : itemNameID.entrySet()) {
+            System.out.println(item.getValue() + " - Quantity: " + INITIAL_QUANTITY);
+        }
+    }
+
 
     // call the setStock method
     // takes in the Map of items
