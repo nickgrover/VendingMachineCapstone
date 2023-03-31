@@ -1,13 +1,14 @@
 package com.techelevator;
 
-public class Candy extends InventoryItem{
+public class Candy extends InventoryItem {
 
-    public Candy(String slotLocation, String name, double price, String type, String purchaseMessage) {
-        super(slotLocation, name, price, type, "Munch Munch, Yum!");
+    public Candy(String name, double price) {
+        super(name, price);
     }
 
     @Override
-    public double getPrice() {
-        return 0;
+    public String getPurchaseMessage() {
+        return "Munch Munch, Yum!";
     }
 }
+

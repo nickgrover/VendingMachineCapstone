@@ -9,28 +9,14 @@ import java.util.Scanner;
 public class Drink extends InventoryItem {
 
 
-
-
-    public Drink(String slotLocation, String name, double price,  String type, String purchaseMessage) {
-        super(slotLocation,name, price,type, "Glug Glug, Yum!");
-
+    public Drink(String name, double price) {
+        super(name, price);
     }
 
     @Override
-    public double getPrice() {
-        return 0;
+    public String getPurchaseMessage() {
+        return "Glug Glug, Yum!";
     }
 
-//    public static void setDrinkPrices() {
-//        File file = new File("vendingmachine.csv");
-//        try (Scanner scanner = new Scanner (file)) {
-//            while (scanner.hasNextLine()) {
-//                String line = scanner.nextLine();
-//                String [] arrayLine = line.split("\\|");
-//                drinkPrices.put(arrayLine[0], Double.valueOf(arrayLine[2]));
-//            }
-//        } catch (FileNotFoundException e) {
-//        }
-//
-//    }
+
 }
