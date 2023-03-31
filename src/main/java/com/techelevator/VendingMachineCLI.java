@@ -25,6 +25,8 @@ public class VendingMachineCLI {
 		this.menu = menu;
 	}
 
+	private Calculator calculator = new Calculator();
+
 	public void run() {
 		InventoryReader.buildInventory();
 		while (true) {
@@ -37,10 +39,15 @@ public class VendingMachineCLI {
 				// do purchase
 				String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 				if(purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)){
-					System.out.println("Current Money Provided: "+ Calculator.getCurrentMoneyProvided());
+					System.out.println("Current Money Provided: "+ calculator.getCurrentMoneyProvided());
 					System.out.println("Insert Money");
-					Calculator.feedMoney(Calculator.getCurrentMoneyProvided());
-					System.out.println("Current Money Provided: "+ Calculator.getCurrentMoneyProvided());
+					calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided());
+					System.out.println("Current Money Provided: "+ calculator.getCurrentMoneyProvided());
+				}
+				if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
+					InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
+
+
 				}
 
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {

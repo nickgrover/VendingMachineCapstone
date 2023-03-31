@@ -5,26 +5,30 @@ import java.util.Scanner;
 public class Calculator {
 
     private double moneyInput;
-    private static double currentMoneyProvided = 0.00;
+    private double currentMoneyProvided;
+
+
+    public Calculator() {
+    }
 
     public Calculator(double moneyInput, double currentMoneyProvided) {
         this.moneyInput = moneyInput;
-        this.currentMoneyProvided = currentMoneyProvided;
+        this.currentMoneyProvided = 0;
     }
 
-    public static double feedMoney(double currentMoneyProvided){
+    public void setCurrentMoneyProvided(double currentMoneyProvided){
         Scanner scanner = new Scanner(System.in);
         String moneyAdded = scanner.nextLine();
         double moneyAddedDouble = Double.parseDouble(moneyAdded);
         currentMoneyProvided+=moneyAddedDouble;
-        return currentMoneyProvided;
+        this.currentMoneyProvided = currentMoneyProvided;
     }
 
     public double getMoneyInput() {
         return moneyInput;
     }
 
-    public static double getCurrentMoneyProvided() {
+    public double getCurrentMoneyProvided() {
         return currentMoneyProvided;
     }
 }

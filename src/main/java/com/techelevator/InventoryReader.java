@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 public class InventoryReader {
 
+
     static Map<String, InventoryItem> inventoryItemMap = new HashMap<>();
+
 
     public static Map<String, InventoryItem> buildInventory() {
 
