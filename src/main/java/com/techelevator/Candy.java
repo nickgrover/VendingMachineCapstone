@@ -2,8 +2,12 @@ package com.techelevator;
 
 public class Candy extends InventoryItem{
 
+    public Candy(String slotLocation, String name, double price, String type, String purchaseMessage) {
+        super(slotLocation, name, price, type, "Munch Munch, Yum!");
+    }
 
-    public Candy(String name, String iD, String category, int price) {
-        super(name, iD, category, price);
+    @Override
+    public double getPrice() {
+        return 0;
     }
 }

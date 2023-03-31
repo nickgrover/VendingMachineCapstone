@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.Map;
+
 public interface Purchasable {
 
 
@@ -11,4 +13,5 @@ public interface Purchasable {
     String getType();
 
 
+    double getPrice(Map<String, Double> itemPrices);
 }

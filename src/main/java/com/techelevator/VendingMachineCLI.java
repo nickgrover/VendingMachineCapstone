@@ -28,6 +28,7 @@ public class VendingMachineCLI {
 				InventoryItem.displayItems();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
+				
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 				// exit
 			}
