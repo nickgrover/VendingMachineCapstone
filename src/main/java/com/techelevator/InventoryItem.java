@@ -44,7 +44,7 @@ public class InventoryItem implements Purchasable {
 
 
     @Override
-    public String printPurchaseMessage() {
+    public String getPurchaseMessage() {
         return null;
     }
 

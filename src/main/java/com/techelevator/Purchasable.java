@@ -3,7 +3,7 @@ package com.techelevator;
 public interface Purchasable {
 
 
-    String printPurchaseMessage();
+    String getPurchaseMessage();
     String getSlotLocation();
     String getName();
     double getPrice();

@@ -16,7 +16,7 @@ public class Drink extends InventoryItem {
     }
 
 
-    public String purchaseMessage() {
+    public String getPurchaseMessage() {
         return "Glug Glug, Yum!";
     }
 
