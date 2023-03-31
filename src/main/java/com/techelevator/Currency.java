@@ -7,6 +7,7 @@ public class Currency {
     private final double QUARTER = .25;
     private final double DOLLAR = 1.00;
     private final double FIVE_DOLLAR = 5.00;
+
     public Currency() {
     }
 

@@ -1,12 +1,19 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Gum extends InventoryItem {
-    public Gum(String name, double price) {
-        super(name, price);
+    public Gum(String keyCode, String itemName, BigDecimal itemPrice, String itemType) {
+        super(keyCode, itemName, itemPrice, itemType);
     }
 
-    @Override
-    public String getPurchaseMessage() {
-        return "Chew Chew, Yum!";
-    }
+
+//    public Gum(String name, double price) {
+//        super(name, price);
+//    }
+//
+//    @Override
+//    public String getPurchaseMessage() {
+//        return "Chew Chew, Yum!";
+//    }
 }

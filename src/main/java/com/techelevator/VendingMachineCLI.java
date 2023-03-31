@@ -31,19 +31,28 @@ public class VendingMachineCLI {
 		InventoryReader.buildInventory();
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
-
+			//Display list
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 				String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
-				if(purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)){
+				if(purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
+
 					System.out.println("Current Money Provided: "+ calculator.getCurrentMoneyProvided());
-					System.out.println("Insert Money");
-					calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided());
-					System.out.println("Current Money Provided: "+ calculator.getCurrentMoneyProvided());
+					System.out.println("Insert Money or Press x to return Purchase Menu");
+					Scanner scanner = new Scanner(System.in);
+					String moneyInput = scanner.nextLine();
+					while (!moneyInput.equals("x")) {
+						calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(),moneyInput);
+						System.out.println("Current Money Provided: "+ calculator.getCurrentMoneyProvided());
+						System.out.println("Insert Money or Press x to return Purchase Menu");
+						moneyInput = scanner.nextLine();
+					}
+
 				}
+
 				if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
 					InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
 

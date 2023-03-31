@@ -4,27 +4,26 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    private double moneyInput;
+    private String moneyInput;
     private double currentMoneyProvided;
 
 
     public Calculator() {
     }
 
-    public Calculator(double moneyInput, double currentMoneyProvided) {
+    public Calculator(String moneyInput, double currentMoneyProvided) {
         this.moneyInput = moneyInput;
         this.currentMoneyProvided = 0;
     }
 
-    public void setCurrentMoneyProvided(double currentMoneyProvided){
-        Scanner scanner = new Scanner(System.in);
-        String moneyAdded = scanner.nextLine();
-        double moneyAddedDouble = Double.parseDouble(moneyAdded);
+    public void setCurrentMoneyProvided(double currentMoneyProvided, String moneyInput){
+
+        double moneyAddedDouble = Double.parseDouble(moneyInput);
         currentMoneyProvided+=moneyAddedDouble;
         this.currentMoneyProvided = currentMoneyProvided;
     }
 
-    public double getMoneyInput() {
+    public String getMoneyInput() {
         return moneyInput;
     }
 

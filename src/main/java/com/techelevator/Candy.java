@@ -1,14 +1,19 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Candy extends InventoryItem {
-
-    public Candy(String name, double price) {
-        super(name, price);
+    public Candy(String keyCode, String itemName, BigDecimal itemPrice, String itemType) {
+        super(keyCode, itemName, itemPrice, itemType);
     }
 
-    @Override
-    public String getPurchaseMessage() {
-        return "Munch Munch, Yum!";
-    }
+//    public Candy(String name, double price) {
+//        super(name, price);
+//    }
+//
+//    @Override
+//    public String getPurchaseMessage() {
+//        return "Munch Munch, Yum!";
+//    }
 }
 
