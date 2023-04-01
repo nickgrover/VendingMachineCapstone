@@ -28,8 +28,10 @@ public class VendingMachineCLI {
 
 	private Calculator calculator = new Calculator();
 	private Currency currency = new Currency();
+	Log log = new Log();
 
 	public void run() {
+		File actionLog = new File("java-yellow-minicapstonemodule1-team6");
 		InventoryReader.buildInventory();
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -54,6 +56,7 @@ public class VendingMachineCLI {
 						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 						System.out.println("Insert Money or Press x to return Purchase Menu");
 						moneyInput = scanner.nextLine();
+
 					}
 				}
 				if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
