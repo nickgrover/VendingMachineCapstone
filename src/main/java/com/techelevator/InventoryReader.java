@@ -23,39 +23,44 @@ public class InventoryReader {
                 String line = scanner.nextLine();
                 String[] arrayLine = line.split("\\|");
                 //if it is a cetain category ie chip or drin
-                String itemKey = arrayLine[0];
-                String itemName = arrayLine[1];
-                String itemPriceString = arrayLine[2];
-                BigDecimal itemPrice = new BigDecimal(itemPriceString);
-                String itemType = arrayLine[3];
-                InventoryItem inventoryItem = new InventoryItem(itemKey,itemName, itemPrice, itemType);
-                inventoryItem.setQuantity(5);
-                inventoryItemMap.put(itemKey, inventoryItem);
-//                if (arrayLine[3].equals("Chip")) {
-//                    //inventory map.put(A1,new category chip drink gum)
-//                    inventoryItemMap.put(arrayLine[0], new Chips(arrayLine[1], Double.parseDouble(arrayLine[2])));
-//                }
-//                if (arrayLine[3].equals("Drink")) {
-//                    inventoryItemMap.put(arrayLine[0], new Drink(arrayLine[1], Double.parseDouble(arrayLine[2])));
-//                }
-//                if (arrayLine[3].equals("Candy")) {
-//                    inventoryItemMap.put(arrayLine[0], new Candy(arrayLine[1], Double.parseDouble(arrayLine[2])));
-//                }
-//                if (arrayLine[3].equals("Gum")) {
-//                    inventoryItemMap.put(arrayLine[0], new Gum(arrayLine[1], Double.parseDouble(arrayLine[2])));
-//                }
+//                String itemKey = arrayLine[0];
+//                String itemName = arrayLine[1];
+//                String itemPriceString = arrayLine[2];
+//                BigDecimal itemPrice = new BigDecimal(itemPriceString);
+//                String itemType = arrayLine[3];
+//                InventoryItem inventoryItem = new InventoryItem(itemKey,itemName, itemPrice, itemType);
+//                inventoryItem.setQuantity(5);
+//                inventoryItemMap.put(itemKey, inventoryItem);
+                if (arrayLine[3].equals("Chip")) {
+                    //inventory map.put(A1,new category chip drink gum)
+                    inventoryItemMap.put(arrayLine[0], new Chips(arrayLine[1], new BigDecimal(arrayLine[2])));
+                }
+                if (arrayLine[3].equals("Drink")) {
+                    inventoryItemMap.put(arrayLine[0], new Drink(arrayLine[1], new BigDecimal(arrayLine[2])));
+                }
+                if (arrayLine[3].equals("Candy")) {
+                    inventoryItemMap.put(arrayLine[0], new Candy(arrayLine[1], new BigDecimal(arrayLine[2])));
+                }
+                if (arrayLine[3].equals("Gum")) {
+                    inventoryItemMap.put(arrayLine[0], new Gum(arrayLine[1], new BigDecimal(arrayLine[2])));
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("File can not be read from.");
         }
-
         return inventoryItemMap;
     }
 
-    public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
-        for (Map.Entry<String, InventoryItem> item : inventoryItemMap.entrySet()) {
-            System.out.println(""+item.getValue().getItemName()+"|"+item.getValue().getItemPrice());
-        }
+//    public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
+//        for (Map.Entry<String, InventoryItem> item : inventoryItemMap.entrySet()) {
+//            System.out.println(""+item.getValue().getItemName()+"|"+item.getValue().getItemPrice());
+//        }
+
+        public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
+            for (String item : inventoryItemMap.keySet()) {
+                InventoryItem hey = inventoryItemMap.get(item);
+                System.out.println(item + " | " + hey.getName() + " | " + hey.getPrice() + " | " + hey.getQuantity());
+            }
 
     }
 
