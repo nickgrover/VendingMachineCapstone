@@ -11,12 +11,13 @@ public class Calculator {
 
 
     public Calculator() {
+        this.currentMoneyProvided = new BigDecimal(0);
     }
 
     public Calculator(BigDecimal moneyInput, BigDecimal currentMoneyProvided, BigDecimal itemCost) {
         this.moneyInput = moneyInput;
         this.itemCost = itemCost;
-        this.currentMoneyProvided.equals(0);
+        this.currentMoneyProvided = new BigDecimal(0);
     }
 
     public void setCurrentMoneyProvided(BigDecimal currentMoneyProvided, BigDecimal moneyInput, boolean isPurchase){
@@ -43,9 +44,5 @@ public class Calculator {
     public BigDecimal getCurrentMoneyProvided() {
         return currentMoneyProvided;
     }
-
-
-
-
 
 }

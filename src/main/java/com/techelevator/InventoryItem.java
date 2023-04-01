@@ -108,33 +108,20 @@ public class InventoryItem implements Purchasable {
         return null;
     }
 
-    public static void purchaseItem(Map<String, InventoryItem> inventoryItemMap, BigDecimal currentMoneyProvided, String userSelection) {
-//        Scanner scanner = new Scanner(System.in);
-//        String userSelection = scanner.nextLine();
-        //for (String item : inventoryItemMap.keySet()) {
-        InventoryItem hey = inventoryItemMap.get(userSelection);
-        //if (hey.equals(userSelection) && hey.getQuantity()> 0) {
-        if (hey.getQuantity() > 0) {
-//                if (hey.getPrice() < currentMoneyProvided) {
-            calculator.setCurrentMoneyProvided(currentMoneyProvided, hey.getPrice(), true);
-            hey.setQuantity(hey.getQuantity());
-            System.out.println(userSelection + " | " + hey.getName() + " | " + hey.getPrice() + " | " + calculator.getCurrentMoneyProvided());
-            System.out.println(hey.getPurchaseMessage());
-//                } else {
-        } else {
-            System.out.println();
-            System.out.println("Sorry, this item is sold out");
+    public static void purchaseItem(Map<String, InventoryItem> inventoryItemMap, BigDecimal currentMoneyProvided, String userSelection) throws NullPointerException {
+        InventoryItem item = inventoryItemMap.get(userSelection);
+            if (item.getQuantity() > 0) {
+                calculator.setCurrentMoneyProvided(currentMoneyProvided, item.getPrice(), true);
+                item.setQuantity(item.getQuantity());
+                System.out.println(userSelection + " | " + item.getName() + " | $" + item.getPrice() + " | " + calculator.getCurrentMoneyProvided());
+                System.out.println(item.getPurchaseMessage());
+            } else {
+                System.out.println();
+                System.out.println("Sorry, this item is sold out");
+            }
         }
-    }
 }
 
-
-
-
-
-    // call the setStock method
-    // takes in the Map of items
-    // Cycles through the map, applies a quantity of INITIAL_QUANTITY to each item
 
 
 

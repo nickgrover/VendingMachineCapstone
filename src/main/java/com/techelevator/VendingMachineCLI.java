@@ -43,42 +43,49 @@ public class VendingMachineCLI {
 				// do purchase
 				System.out.println();
 				System.out.println("Current Money Provided: $"+ calculator.getCurrentMoneyProvided());
-				String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
-				if(purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
+				//String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
-					System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided().doubleValue());
-					System.out.println("Insert Money or Press x to return Purchase Menu");
-					Scanner scanner = new Scanner(System.in);
-					String moneyInput = scanner.nextLine();
-					while (!moneyInput.equals("x")) {
-						BigDecimal moneyInputDouble = new BigDecimal(moneyInput);
-						calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), moneyInputDouble, false);
-						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
+				while (true) {
+					String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
+						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided().doubleValue());
 						System.out.println("Insert Money or Press x to return Purchase Menu");
-						moneyInput = scanner.nextLine();
+						Scanner scanner = new Scanner(System.in);
+						String moneyInput = scanner.nextLine();
+						while (!moneyInput.equals("x")) {
+							BigDecimal moneyInputDouble = new BigDecimal(moneyInput);
+							calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), moneyInputDouble, false);
+							System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided().doubleValue());
+							System.out.println("Insert Money or Press x to return Purchase Menu");
+							moneyInput = scanner.nextLine();
 
+						}
 					}
-				}
-				if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
-					InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
-					System.out.println();
-					System.out.println("What would you like to buy?");
-					Scanner scanner = new Scanner(System.in);
-					String userSelection = scanner.nextLine();
-					if (InventoryReader.getInventoryItemMap().get(userSelection).getPrice().compareTo(calculator.getCurrentMoneyProvided()) < 0) {
-						InventoryItem.purchaseItem(InventoryReader.getInventoryItemMap(), calculator.getCurrentMoneyProvided(), userSelection);
-						calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), InventoryReader.getInventoryItemMap().get(userSelection).getPrice(), true);
-					} else {
+					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
+						InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
 						System.out.println();
-						System.out.println("Not enough money, please insert more");
+						System.out.println("What would you like to buy?");
+						Scanner scanner = new Scanner(System.in);
+						String userSelection = scanner.nextLine();
+						try {
+							if (InventoryReader.getInventoryItemMap().get(userSelection).getPrice().compareTo(calculator.getCurrentMoneyProvided()) < 0) {
+								InventoryItem.purchaseItem(InventoryReader.getInventoryItemMap(), calculator.getCurrentMoneyProvided(), userSelection);
+								calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), InventoryReader.getInventoryItemMap().get(userSelection).getPrice(), true);
+							} else {
+								System.out.println();
+								System.out.println("Not enough money, please insert more");
+							}
+						} catch (NullPointerException e) {
+							System.out.println("Please select a valid option");
+						}
 					}
+					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
+						currency.returnChange(calculator.getCurrentMoneyProvided());
+						break;
 					}
-				if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
-					currency.returnChange(calculator.getCurrentMoneyProvided());
 				}
-
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
-				// exit
+				System.exit(0);
 			}
 		}
 	}

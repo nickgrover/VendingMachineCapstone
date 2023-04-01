@@ -57,9 +57,9 @@ public class InventoryReader {
 //        }
 
         public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
-            for (String item : inventoryItemMap.keySet()) {
-                InventoryItem hey = inventoryItemMap.get(item);
-                System.out.println(item + " | " + hey.getName() + " | " + hey.getPrice() + " | " + hey.getQuantity());
+            for (String itemKey : inventoryItemMap.keySet()) {
+                InventoryItem item = inventoryItemMap.get(itemKey);
+                System.out.println(itemKey + " | " + item.getName() + " | $" + item.getPrice() + " | " + item.getQuantity());
             }
 
     }
