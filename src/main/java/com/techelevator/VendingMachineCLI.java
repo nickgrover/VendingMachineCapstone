@@ -4,7 +4,9 @@ import com.techelevator.view.Menu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -31,7 +33,7 @@ public class VendingMachineCLI {
 	Log log = new Log();
 
 	public void run() {
-		File actionLog = new File("java-yellow-minicapstonemodule1-team6");
+		File actionLog = new File("actionLog.txt");
 		InventoryReader.buildInventory();
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -54,8 +56,11 @@ public class VendingMachineCLI {
 						String moneyInput = scanner.nextLine();
 						while (!moneyInput.equals("x")) {
 							BigDecimal moneyInputDouble = new BigDecimal(moneyInput);
+							BigDecimal currentMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
 							calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), moneyInputDouble, false);
-							System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided().doubleValue());
+							BigDecimal updatedMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
+							System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
+							log.writeToFile(actionLog, updatedMoney.doubleValue(), currentMoney.doubleValue(), "FEED ME:");
 							System.out.println("Insert Money or Press x to return Purchase Menu");
 							moneyInput = scanner.nextLine();
 
@@ -70,7 +75,10 @@ public class VendingMachineCLI {
 						try {
 							if (InventoryReader.getInventoryItemMap().get(userSelection).getPrice().compareTo(calculator.getCurrentMoneyProvided()) < 0) {
 								InventoryItem.purchaseItem(InventoryReader.getInventoryItemMap(), calculator.getCurrentMoneyProvided(), userSelection);
+								BigDecimal currentMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
 								calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), InventoryReader.getInventoryItemMap().get(userSelection).getPrice(), true);
+								BigDecimal updatedMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
+								log.writeToFile(actionLog, updatedMoney.doubleValue(), currentMoney.doubleValue(), InventoryReader.getInventoryItemMap().get(userSelection).getName() + " " + userSelection);
 							} else {
 								System.out.println();
 								System.out.println("Not enough money, please insert more");
