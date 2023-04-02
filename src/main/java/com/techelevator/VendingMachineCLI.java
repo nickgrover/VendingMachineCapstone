@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLOutput;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -45,29 +47,31 @@ public class VendingMachineCLI {
 				// do purchase
 				System.out.println();
 				System.out.println("Current Money Provided: $"+ calculator.getCurrentMoneyProvided());
-				//String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
 				while (true) {
 					String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
-						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided().doubleValue());
+						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 						System.out.println("Insert Money or Press x to return Purchase Menu");
 						Scanner scanner = new Scanner(System.in);
 						String moneyInput = scanner.nextLine();
-						while (!moneyInput.equals("x")) {
+						while (!moneyInput.toLowerCase().equals("x")) {
 							BigDecimal moneyInputDouble = new BigDecimal(moneyInput);
-							BigDecimal currentMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
+							BigDecimal currentMoney = calculator.getCurrentMoneyProvided();
 							calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), moneyInputDouble, false);
-							BigDecimal updatedMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
+							BigDecimal updatedMoney = calculator.getCurrentMoneyProvided();
 							System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
-							log.writeToFile(actionLog, updatedMoney.doubleValue(), currentMoney.doubleValue(), "FEED ME:");
+							log.writeToFile(actionLog, updatedMoney, currentMoney, "FEED ME:");
 							System.out.println("Insert Money or Press x to return Purchase Menu");
 							moneyInput = scanner.nextLine();
-
 						}
+						System.out.println();
+						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 					}
 					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
 						InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
+						System.out.println();
+						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 						System.out.println();
 						System.out.println("What would you like to buy?");
 						Scanner scanner = new Scanner(System.in);
@@ -75,10 +79,10 @@ public class VendingMachineCLI {
 						try {
 							if (InventoryReader.getInventoryItemMap().get(userSelection).getPrice().compareTo(calculator.getCurrentMoneyProvided()) < 0) {
 								InventoryItem.purchaseItem(InventoryReader.getInventoryItemMap(), calculator.getCurrentMoneyProvided(), userSelection);
-								BigDecimal currentMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
+								BigDecimal currentMoney = calculator.getCurrentMoneyProvided();
 								calculator.setCurrentMoneyProvided(calculator.getCurrentMoneyProvided(), InventoryReader.getInventoryItemMap().get(userSelection).getPrice(), true);
-								BigDecimal updatedMoney = new BigDecimal(calculator.getCurrentMoneyProvided().doubleValue());
-								log.writeToFile(actionLog, updatedMoney.doubleValue(), currentMoney.doubleValue(), InventoryReader.getInventoryItemMap().get(userSelection).getName() + " " + userSelection);
+								BigDecimal updatedMoney = calculator.getCurrentMoneyProvided();
+								log.writeToFile(actionLog, updatedMoney, currentMoney, InventoryReader.getInventoryItemMap().get(userSelection).getName() + " " + userSelection);
 							} else {
 								System.out.println();
 								System.out.println("Not enough money, please insert more");
@@ -86,9 +90,15 @@ public class VendingMachineCLI {
 						} catch (NullPointerException e) {
 							System.out.println("Please select a valid option");
 						}
+						System.out.println();
+						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 					}
 					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
+						BigDecimal currentMoney = calculator.getCurrentMoneyProvided();
 						currency.returnChange(calculator.getCurrentMoneyProvided());
+						calculator.setCurrentMoneyProvided(currentMoney, currentMoney, true);
+						BigDecimal updatedMoney = calculator.getCurrentMoneyProvided();
+						log.writeToFile(actionLog, updatedMoney, currentMoney, "GIVE CHANGE:");
 						break;
 					}
 				}

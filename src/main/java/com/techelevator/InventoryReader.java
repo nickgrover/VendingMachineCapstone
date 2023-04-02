@@ -9,9 +9,7 @@ import java.util.Scanner;
 
 public class InventoryReader {
 
-
     static Map<String, InventoryItem> inventoryItemMap = new HashMap<>();
-
 
     public static Map<String, InventoryItem> buildInventory() {
 
@@ -22,15 +20,6 @@ public class InventoryReader {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] arrayLine = line.split("\\|");
-                //if it is a cetain category ie chip or drin
-//                String itemKey = arrayLine[0];
-//                String itemName = arrayLine[1];
-//                String itemPriceString = arrayLine[2];
-//                BigDecimal itemPrice = new BigDecimal(itemPriceString);
-//                String itemType = arrayLine[3];
-//                InventoryItem inventoryItem = new InventoryItem(itemKey,itemName, itemPrice, itemType);
-//                inventoryItem.setQuantity(5);
-//                inventoryItemMap.put(itemKey, inventoryItem);
                 if (arrayLine[3].equals("Chip")) {
                     //inventory map.put(A1,new category chip drink gum)
                     inventoryItemMap.put(arrayLine[0], new Chips(arrayLine[1], new BigDecimal(arrayLine[2])));
@@ -51,18 +40,12 @@ public class InventoryReader {
         return inventoryItemMap;
     }
 
-//    public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
-//        for (Map.Entry<String, InventoryItem> item : inventoryItemMap.entrySet()) {
-//            System.out.println(""+item.getValue().getItemName()+"|"+item.getValue().getItemPrice());
-//        }
-
         public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
             for (String itemKey : inventoryItemMap.keySet()) {
                 InventoryItem item = inventoryItemMap.get(itemKey);
                 System.out.println(itemKey + " | " + item.getName() + " | $" + item.getPrice() + " | " + item.getQuantity());
             }
-
-    }
+        }
 
     public static Map<String, InventoryItem> getInventoryItemMap() {
         return inventoryItemMap;

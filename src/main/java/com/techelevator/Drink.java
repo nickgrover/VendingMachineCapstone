@@ -8,13 +8,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Drink extends InventoryItem {
-//    public Drink(String keyCode, String itemName, BigDecimal itemPrice, String itemType) {
-//        super(keyCode, itemName, itemPrice, itemType);
-//    }
-
-
-
-
 
     public Drink(String name, BigDecimal price) {
         super(name, price);
@@ -24,6 +17,5 @@ public class Drink extends InventoryItem {
     public String getPurchaseMessage() {
         return "Glug Glug, Yum!";
     }
-
 
 }

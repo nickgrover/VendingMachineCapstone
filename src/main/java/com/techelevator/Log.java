@@ -14,8 +14,7 @@ public class Log {
     public Log() {
     }
 
-
-    public static void writeToFile(File actionLog, double currentMoney, double updatedMoney, String action) {
+    public static void writeToFile(File actionLog, BigDecimal currentMoney, BigDecimal updatedMoney, String action) {
             try {
                     PrintWriter writer = new PrintWriter(new FileOutputStream(actionLog.getAbsoluteFile(), true));
                     LocalDateTime dateTime = LocalDateTime.now();
