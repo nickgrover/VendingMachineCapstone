@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Drink extends InventoryItem {
-
+    //CONSTRUCTOR
     public Drink(String name, BigDecimal price) {
         super(name, price);
     }
-
+    //METHOD OVERRIDE FROM PURCHASABLE PRINTS MESSAGE UPON PURCHASE
     @Override
     public String getPurchaseMessage() {
         return "Glug Glug, Yum!";

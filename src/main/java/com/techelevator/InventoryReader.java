@@ -33,13 +33,13 @@ public class InventoryReader {
                 if (arrayLine[3].equals("Gum")) {
                     inventoryItemMap.put(arrayLine[0], new Gum(arrayLine[1], new BigDecimal(arrayLine[2])));
                 }
-            }
+            }//PRINTS OUT AN ERROR IF THE ABOVE IF STATEMENTS FAIL TO FOLLOW THROUGH.
         } catch (FileNotFoundException e) {
             System.out.println("File can not be read from.");
         }
         return inventoryItemMap;
     }
-
+        //METHOD TO DISPLAY INVENTORY AVAILABILITY TO USER BY CALLING THE POPULATED MAP
         public static void displayInventory(Map<String, InventoryItem> inventoryItemMap){
             for (String itemKey : inventoryItemMap.keySet()) {
                 InventoryItem item = inventoryItemMap.get(itemKey);

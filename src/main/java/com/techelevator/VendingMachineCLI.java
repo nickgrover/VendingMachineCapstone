@@ -48,7 +48,7 @@ public class VendingMachineCLI {
 				System.out.println();
 				System.out.println("Current Money Provided: $"+ calculator.getCurrentMoneyProvided());
 
-				while (true) {
+				while (true) {//IF THEY CHOOSE TO FEED MONEY THEY CAN CONTINUE TO ADD MONEY UNTIL THEY HIT X AND EXIT THE ENTER MONEY AND GO BACK TO PURCHASE MENU.
 					String purchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
@@ -68,7 +68,7 @@ public class VendingMachineCLI {
 						System.out.println();
 						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 					}
-					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
+					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {//IF THEY CHOOSE SELECT OPTION THEN THEY ARE PRESENTED WITH THE LIST OF OPTIONS AND AVAILABLE ITEMS AND PRICES.
 						InventoryReader.displayInventory(InventoryReader.getInventoryItemMap());
 						System.out.println();
 						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
@@ -76,7 +76,7 @@ public class VendingMachineCLI {
 						System.out.println("What would you like to buy?");
 						Scanner scanner = new Scanner(System.in);
 						String userSelection = scanner.nextLine();
-						try {
+						try {//WHATEVER THEY TYPE IN IS CALLED FROM THE POPULATED MAP WITH THE USER SELECTION 'KEY' AND THE MONEY IS SUBTRACTED FROM THE INPUT AMOUT. A PURCHASE MESSAGE IS PRINTED DEPENDING ON THE TYPE OF ITEM.
 							if (InventoryReader.getInventoryItemMap().get(userSelection).getPrice().compareTo(calculator.getCurrentMoneyProvided()) < 0) {
 								InventoryItem.purchaseItem(InventoryReader.getInventoryItemMap(), calculator.getCurrentMoneyProvided(), userSelection);
 								BigDecimal currentMoney = calculator.getCurrentMoneyProvided();
@@ -93,7 +93,7 @@ public class VendingMachineCLI {
 						System.out.println();
 						System.out.println("Current Money Provided: $" + calculator.getCurrentMoneyProvided());
 					}
-					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
+					if (purchaseMenuChoice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {//EXITS THE PURCHASE LOOP AND RETURNS THEIR REMAINING CHANGE IN THE FORM OF COINS
 						BigDecimal currentMoney = calculator.getCurrentMoneyProvided();
 						currency.returnChange(calculator.getCurrentMoneyProvided());
 						calculator.setCurrentMoneyProvided(currentMoney, currentMoney, true);

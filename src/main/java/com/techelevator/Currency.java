@@ -9,26 +9,17 @@ public class Currency {
     private final BigDecimal DIME = new BigDecimal(".10");
     private final BigDecimal QUARTER = new BigDecimal(".25");
 
-
+    //constructor with no parameters
     public Currency() {
     }
 
-    public BigDecimal getNICKEL() {
-        return NICKEL;
-    }
-
-    public BigDecimal getDIME() {
-        return DIME;
-    }
-
-    public BigDecimal getQUARTER() {
-        return QUARTER;
-    }
-
+    //METHOD
     public void returnChange(BigDecimal currentMoneyProvided) {
         int numberOfQuarters = 0;
         int numberOfNickels = 0;
         int numberOfDimes = 0;
+        //WHILE LOOP KEEPS ADDING QUARTERS TO THE NUMBER OF QUARTERS UNTIL THE
+        // TRACKER COMPARED VALUE IS LESS QUARTER, SO ON THE SAME FOR THE DIME AND NICKELS
         BigDecimal tracker = currentMoneyProvided;
         while(tracker.compareTo(QUARTER) >= 0) {
             tracker = tracker.subtract(QUARTER);
@@ -40,6 +31,7 @@ public class Currency {
             tracker = (tracker.subtract(NICKEL));
             numberOfNickels++;
         }
+        //PRINTS OUT CHANGE RETURNED
         System.out.println();
         System.out.println("Returned change: ");
         System.out.println("Number of quarters: " + numberOfQuarters);

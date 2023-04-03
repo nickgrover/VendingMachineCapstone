@@ -17,14 +17,13 @@ public class InventoryItem implements Purchasable {
     private String itemKey;
 
     static Calculator calculator = new Calculator();
-
+    //CONSTRUCTOR
     public InventoryItem(String name, BigDecimal price) {
         this.quantity = INITIAL_QUANTITY;
         this.name = name;
         this.price = price;
     }
-
-
+    //GETTERS AND SETTERS
     public int getQuantity() {
         return quantity;
     }
@@ -45,7 +44,8 @@ public class InventoryItem implements Purchasable {
     public String getPurchaseMessage() {
         return null;
     }
-
+    //METHOD FOR PURCHASEING ITEM, GETS MAP THAT WAS POPULATED WITH INVENTORY ITEMS AND INFORMATION, IF AVAILABLE,
+    // IT ALLOWS PURCHASE AND PRINTS OUR WHAT USER SELECTED, THE NAME, THE PRICE, AND THE MONEY THEY STILL HAVE REMAINING.
     public static void purchaseItem(Map<String, InventoryItem> inventoryItemMap, BigDecimal currentMoneyProvided, String userSelection) throws NullPointerException {
         InventoryItem item = inventoryItemMap.get(userSelection);
             if (item.getQuantity() > 0) {
