@@ -1,14 +1,13 @@
-## Module 1 Capstone - Vending Machine Software
+**Vending Machine Software**
 
-You're developing an application for the newest vending machine distributor,
-Umbrella Corp. They've released a new vending machine, Vendo-Matic 800, that's integrated
+Developing an application a vending machine application that's integrated
 with everyone's bank accounts, allowing customers to purchase products from their computers for their convenience.
 
-### Application requirements
+### Application Capabilities: 
 
 1. The vending machine dispenses beverages, candy, chips, and gum.
    - Each vending machine item has a Name and a Price.
-2. A main menu must display when the software runs, presenting the following options:
+2. A main menu displays when the software runs, presenting the following options:
     > ```
     > (1) Display Vending Machine Items
     > (2) Purchase
@@ -53,8 +52,8 @@ process menu:
           - All candy items print "Munch Munch, Yum!"
           - All drink items print "Glug Glug, Yum!"
           - All gum items print "Chew Chew, Yum!"
-        - After the machine dispenses the product, the machine must update its balance
-        accordingly and return the customer to the Purchase menu.
+        - After the machine dispenses the product, the machine updates its balance
+        accordingly and returns the customer to the Purchase menu.
     3. Selecting "(3) Finish Transaction" allows the customer to complete the
     transaction and receive any remaining change.
         - The machine returns the customer's money using nickels, dimes, and quarters
@@ -63,8 +62,8 @@ process menu:
     4. After completing their purchase, the user returns to the "Main" menu to
     continue using the vending machine.
 8. The vending machine logs all transactions to prevent theft from the vending machine.
-   - Each purchase must generate a line in a file called `Log.txt`.
-   - The lines must follow the format shown in the following example.
+   - Each purchase generates a line in a file called `Log.txt`.
+   - The lines follow the format shown in the following example.
        - The first dollar amount is the amount deposited, spent, or given as change.
        - The second dollar amount is the new balance.
         ```
@@ -74,12 +73,11 @@ process menu:
         01/01/2019 12:01:25 PM Cowtales B2 $1.50 $6.75 
         01/01/2019 12:01:35 PM GIVE CHANGE: $6.75 $0.00
         ```
-9. Create as many of your classes as possible to be "testable" classes. Limit console
-input and output to as few classes as possible.
-10. Optional - Sales Report
-    - Provide a "Hidden" menu option on the main menu ("4") that writes to a sales
+**Still need to implement:**
+10. Sales Report
+    - Provides a "Hidden" menu option on the main menu ("4") that writes to a sales
     report that shows the total sales since the machine started. The name of the
-    file must include the date and time so each sales report is uniquely named.
+    file includes the date and time so each sales report is uniquely named.
     - An example of the output format appears at the end of this file.
 11. Provide unit tests demonstrating that your code works correctly.
 ___
@@ -101,8 +99,6 @@ B1|Moonpie|1.80|Candy
 B2|Cowtales|1.50|Candy
 C1|Cola|1.25|Drink
 ```
-
-**An input file is in your repository: `vendingmachine.csv`.**
 
  ---
 ### Sales report
