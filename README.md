@@ -1,6 +1,6 @@
 **Vending Machine Software**
 
-Developing an application a vending machine application that's integrated
+Developing an application of a vending machine that's integrated
 with everyone's bank accounts, allowing customers to purchase products from their computers for their convenience.
 
 ### Application Capabilities: 
